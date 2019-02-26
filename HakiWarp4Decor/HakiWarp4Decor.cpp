@@ -313,14 +313,7 @@ HakiWarp4Decor::_DrawFrame(BRect invalid)
 }
 
 
-/*!	\brief Actually draws the tab
 
-	This function is called when the tab itself needs drawn. Other items,
-	like the window title or buttons, should not be drawn here.
-
-	\param tab The \a tab to update.
-	\param invalid The area of the \a tab to update.
-*/
 void
 HakiWarp4Decor::_DrawTab(Decorator::Tab* tab, BRect invalid)
 {
@@ -425,20 +418,10 @@ HakiWarp4Decor::_DrawTab(Decorator::Tab* tab, BRect invalid)
 }
 
 
-/*!	\brief Actually draws the title
-
-	The main tasks for this function are to ensure that the decorator draws
-	the title only in its own area and drawing the title itself.
-	Using B_OP_COPY for drawing the title is recommended because of the marked
-	performance hit of the other drawing modes, but it is not a requirement.
-
-	\param _tab The \a tab to update.
-	\param r area of the title to update.
-*/
 void
 HakiWarp4Decor::_DrawTitle(Decorator::Tab* _tab, BRect r)
 {
-	STRACE(("_DrawTitle(%f, %f, %f, %f)\n", r.left, r.top, r.right, r.bottom));
+
 
 	Decorator::Tab* tab = static_cast<Decorator::Tab*>(_tab);
 
@@ -486,20 +469,9 @@ HakiWarp4Decor::_DrawTitle(Decorator::Tab* _tab, BRect r)
 }
 
 
-/*!	\brief Actually draws the close button
-
-	Unless a subclass has a particularly large button, it is probably
-	unnecessary to check the update rectangle.
-
-	\param _tab The \a tab to update.
-	\param direct Draw without double buffering.
-	\param rect The area of the button to update.
-*/
 void
 HakiWarp4Decor::_DrawClose(Decorator::Tab* _tab, bool direct, BRect rect)
 {
-	STRACE(("_DrawClose(%f,%f,%f,%f)\n", rect.left, rect.top, rect.right,
-		rect.bottom));
 		
 	Decorator::Tab* tab = static_cast<Decorator::Tab*>(_tab);
 	
@@ -512,14 +484,6 @@ HakiWarp4Decor::_DrawClose(Decorator::Tab* _tab, bool direct, BRect rect)
 	_DrawBevelRect(rect, tab->closePressed, fButtonHighColor, fButtonLowColor);
 	rect.InsetBy(2,2);
 	
-	/*
-	if (!tab->closePressed) {
-		fDrawingEngine->SetHighColor(fButtonLowColor);
-	}
-	else {
-		fDrawingEngine->SetHighColor(fButtonHighColor);
-	}
-	*/
 	
 	fDrawingEngine->SetHighColor(fButtonLowColor);
 	
@@ -531,14 +495,6 @@ HakiWarp4Decor::_DrawClose(Decorator::Tab* _tab, bool direct, BRect rect)
 	fDrawingEngine->StrokeLine(BPoint(rect.left+2, rect.bottom-1),
 								BPoint(rect.right-1, rect.top+2));							
 				
-	/*				
-	if (!tab->closePressed) {
-		fDrawingEngine->SetHighColor(fButtonHighColor);
-	}
-	else {
-		fDrawingEngine->SetHighColor(fButtonLowColor);
-	}
-	*/
 								
 	fDrawingEngine->SetHighColor(fButtonHighColor);	
 	fDrawingEngine->StrokeLine(BPoint(rect.right-3, rect.top+1),
@@ -549,61 +505,14 @@ HakiWarp4Decor::_DrawClose(Decorator::Tab* _tab, bool direct, BRect rect)
 	
 	fDrawingEngine->StrokeLine(BPoint(rect.right, rect.bottom),
 								BPoint(rect.right, rect.top+3));														
-								
-	
-	/*
-	rect.bottom -= 3;
-	rect.right -= 3;
-	
-	rect.InsetBy(2, 2);
-	
-  if (IsFocus(fTopTab)) {		
-	
-	if (tab->closePressed) {
-		fDrawingEngine->SetHighColor(fFrameLowColor);
-	}
-	else {
-		fDrawingEngine->SetHighColor(fFocusTextColor);
-	}
-  }
-  else {
-  	fDrawingEngine->SetHighColor(fNonFocusTextColor);
 
-  }
-  
-		fDrawingEngine->StrokeLine(BPoint(rect.left, rect.top),
-								BPoint(rect.right, rect.bottom));
-		fDrawingEngine->StrokeLine(BPoint(rect.left, rect.top+1),
-								BPoint(rect.right-1, rect.bottom));		
-		fDrawingEngine->StrokeLine(BPoint(rect.left+1, rect.top),
-								BPoint(rect.right, rect.bottom-1));										
-					  
-		fDrawingEngine->StrokeLine(BPoint(rect.left, rect.bottom),
-								BPoint(rect.right, rect.top));
-		fDrawingEngine->StrokeLine(BPoint(rect.left+1, rect.bottom),
-								BPoint(rect.right, rect.top+1));
-		fDrawingEngine->StrokeLine(BPoint(rect.left, rect.bottom-1),
-								BPoint(rect.right-1, rect.top));
-			
-	*/					
 		
 }
 
 
-/*!	\brief Actually draws the zoom button
-
-	Unless a subclass has a particularly large button, it is probably
-	unnecessary to check the update rectangle.
-
-	\param _tab The \a tab to update.
-	\param direct Draw without double buffering.
-	\param rect The area of the button to update.
-*/
 void
 HakiWarp4Decor::_DrawZoom(Decorator::Tab* _tab, bool direct, BRect rect)
 {
-	STRACE(("_DrawZoom(%f,%f,%f,%f)\n", rect.left, rect.top, rect.right,
-		rect.bottom));
 
 	if (rect.IntegerWidth() < 1)
 		return;
@@ -619,34 +528,6 @@ HakiWarp4Decor::_DrawZoom(Decorator::Tab* _tab, bool direct, BRect rect)
 	rect.InsetBy(2,2);
 	_DrawBevelRect(rect, tab->zoomPressed, fButtonLowColor, fButtonHighColor);
 		
-		
-		/*
-	Decorator::Tab* tab = static_cast<Decorator::Tab*>(_tab);	
-		
-	rect.left += 3;
-	rect.bottom -= 3;
-	
-	rect.InsetBy(2, 2);
-	
-  if (IsFocus(fTopTab)) {		
-	
-	if (tab->zoomPressed) {
-		fDrawingEngine->SetHighColor(fFrameLowColor);
-	}
-	else {
-		fDrawingEngine->SetHighColor(fFocusTextColor);
-	}
-  }
-  else {
-  	fDrawingEngine->SetHighColor(fNonFocusTextColor);
-
-  }
-  
-		fDrawingEngine->StrokeRect(rect);
-		rect.InsetBy(1, 1);
-		rect.bottom = rect.top + (rect.bottom-rect.top)/4;
-		fDrawingEngine->FillRect(rect);
-*/
  	
 }
 
@@ -658,21 +539,6 @@ HakiWarp4Decor::_DrawMinimize(Decorator::Tab* tab, bool direct, BRect rect)
 }
 
 
-void
-HakiWarp4Decor::_GetButtonSizeAndOffset(const BRect& tabRect, float* _offset,
-	float* _size, float* _inset) const
-{
-	float tabSize = fTopTab->look == kLeftTitledWindowLook ?
-		tabRect.Width() : tabRect.Height();
-
-	*_offset = 5.0f;
-	*_inset = 0.0f;
-
-	*_size = std::max(0.0f, tabSize - 7.0f);
-}
-
-
-// #pragma mark - Private methods
 
 
 

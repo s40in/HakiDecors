@@ -45,9 +45,6 @@ protected:
 	virtual	void				_DrawMinimize(Decorator::Tab* tab, bool direct,
 									BRect rect);
 
-	virtual	void				_GetButtonSizeAndOffset(const BRect& tabRect,
-									float* offset, float* size,
-									float* inset) const;
 			void				_DrawBevelRect(const BRect rect, bool down,
 									rgb_color light, rgb_color shadow);								
 
