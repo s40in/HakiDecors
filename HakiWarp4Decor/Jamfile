@@ -1,0 +1,22 @@
+SubDir HAIKU_TOP src add-ons decorators HakiWarp4Decor ;
+
+UseBuildFeatureHeaders freetype ;
+UseHeaders [ FDirName $(HAIKU_TOP) src servers app ] ;
+UseHeaders [ FDirName $(HAIKU_TOP) src servers app stackandtile ] ;
+UseHeaders [ FDirName $(HAIKU_TOP) src servers app decorator ] ;
+UseHeaders [ FDirName $(HAIKU_TOP) src servers app drawing ] ;
+UseHeaders [ FDirName $(HAIKU_TOP) src servers app drawing Painter ] ;
+UseHeaders [ FDirName $(HAIKU_TOP) src servers app font ] ;
+UsePrivateHeaders app shared interface graphics ;
+UseLibraryHeaders agg ;
+UsePrivateHeaders kernel ;
+
+AddResources HakiWarp4Decor : resources.rdef ;
+
+Includes [ FGristFiles HakiWarp4Decor.cpp ]
+	: [ BuildFeatureAttribute freetype : headers ] ;
+
+Addon HakiWarp4Decor :
+	HakiWarp4Decor.cpp
+	: be <nogrist>app_server [ TargetLibstdc++ ] [ TargetLibsupc++ ]
+;

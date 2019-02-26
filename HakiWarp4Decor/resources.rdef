@@ -1,0 +1,10 @@
+resource("be:decor:info") message('deco') {
+	"name"				= "HakiWarp4Decor",
+	"authors"			= "s40in",
+	"short_descr"		= "OS/2 Warp 4 style decorator for HAKILO and Haiku",
+	"long_descr"		= "",
+	"lic_url"			= "",
+	"lic_name"			= "Proprietary :)",
+	"support_url"		= "http://s40in.blogspot.com/",
+	float "version"		= 1.0
+};
