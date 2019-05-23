@@ -7,6 +7,10 @@
 #define HAKI_DECORATOR_H
 
 
+#include "/system/develop/sources/haiku/headers/os/interface/View.h"
+#include "/system/develop/sources/haiku/headers/os/interface/Layout.h"
+#include "/system/develop/sources/haiku/headers/os/interface/Window.h"
+
 #include "DecorManager.h"
 #include "SATDecorator.h"
 #include "RGBColor.h"
