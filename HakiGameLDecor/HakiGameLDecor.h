@@ -6,6 +6,9 @@
 #ifndef HAKI_GAME_L_DECOR_H
 #define HAKI_GAME_L_DECOR_H
 
+#include "/system/develop/sources/haiku/headers/os/interface/View.h"
+#include "/system/develop/sources/haiku/headers/os/interface/Layout.h"
+#include "/system/develop/sources/haiku/headers/os/interface/Window.h"
 
 #include "DecorManager.h"
 #include "SATDecorator.h"
