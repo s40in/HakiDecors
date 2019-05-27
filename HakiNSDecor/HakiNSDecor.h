@@ -6,9 +6,16 @@
 #ifndef HAKI_NS_DECOR_H
 #define HAKI_NS_DECOR_H
 
+// build with makefile or Jamfile (in Haiku sorce tree)
+#ifndef USEMAKEFILE
 #include "/system/develop/sources/haiku/headers/os/interface/View.h"
 #include "/system/develop/sources/haiku/headers/os/interface/Layout.h"
 #include "/system/develop/sources/haiku/headers/os/interface/Window.h"
+#else
+#include "View.h"
+#include "Layout.h"
+#include "Window.h"
+#endif
 
 #include "DecorManager.h"
 #include "SATDecorator.h"
