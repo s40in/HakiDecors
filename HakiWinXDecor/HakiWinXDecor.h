@@ -7,7 +7,7 @@
 #define HAKI_WINX_DECOR_H
 
 // build with makefile or Jamfile (in Haiku sorce tree)
-#ifndef USEMAKEFILE
+#ifdef USEMAKEFILE
 #include "/system/develop/sources/haiku/headers/os/interface/View.h"
 #include "/system/develop/sources/haiku/headers/os/interface/Layout.h"
 #include "/system/develop/sources/haiku/headers/os/interface/Window.h"
